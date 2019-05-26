@@ -1,10 +1,10 @@
 <div class="card-wrapper">
   <mat-card *ngIf="user" class="user-card">
-    <img mat-card-image src="{{user.data.avatar}}" alt="User avatar">
+    <img mat-card-image src="{{user.avatar}}" alt="User avatar">
     <mat-card-content>
-      <h2>Id: {{user.data.id}}</h2>
-      <h2>Full Name: {{user.data.first_name}} {{user.data.last_name}}</h2>
-      <h2>Email: {{user.data.email}}</h2>
+      <h2>Id: {{user.id}}</h2>
+      <h2>Full Name: {{user.first_name}} {{user.last_name}}</h2>
+      <h2>Email: {{user.email}}</h2>
     </mat-card-content>
     <mat-card-actions>
       <button mat-stroked-button (click)="goBack()">BACK</button>

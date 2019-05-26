@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router';
+import { UserList } from '../../models/user-list'
 
 @Component({
   selector: 'app-user-list',
@@ -17,7 +18,7 @@ export class UserListComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'email', 'first_name', 'last_name'];
   dataSource = new MatTableDataSource<any>();
-  userList: any = []; 
+  userList: UserList; 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,8 +27,9 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers(page: number){
-    this.apiUsuarios.getUsers(page)
+    this.apiUsuarios.getUserList(page)
       .subscribe(users => {
+        /* console.log("The list users: ", users); */
         this.userList = users;
         this.updateTable(this.userList.data);
       })
@@ -35,7 +37,6 @@ export class UserListComponent implements OnInit {
 
   updateTable(users: any){
     this.dataSource.data = users;
-    console.log("Los usuarios: ", users);
   }
 
   onPaginateChange(value){
@@ -44,7 +45,7 @@ export class UserListComponent implements OnInit {
   }
 
   openUser(userId: number){
-    this.router.navigate(['/user/' + userId]);
+    this.router.navigate([`/user/${this.userList.page}/${userId}`]);
   }
 
 }

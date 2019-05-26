@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { User } from '../../models/user'
 
 @Component({
   selector: 'app-user',
@@ -16,19 +17,21 @@ export class UserComponent implements OnInit {
     private router: Router
   ) { }
 
-  user: any;
+  user: User;
 
   ngOnInit() {
     this.routeActive.params.subscribe((value) => {
-      this.getUser(value.userId);
+      this.getUser(parseInt(value.pageId), parseInt(value.userId));
     });
   }
 
-  getUser(id: number){
-    this.apiUsuarios.getUserById(id)
-      .subscribe(user => {
-        this.user = user;
-        console.log("El user: ", this.user);
+  getUser(pageId: number, userId: number){
+    let userList;
+    this.apiUsuarios.getUserList(pageId)
+      .subscribe(users => {
+        userList = users.data.filter(user => user.id === userId);
+        this.user = userList[0];
+        console.log("The user: ", this.user);
       })
   }
 

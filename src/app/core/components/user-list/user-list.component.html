@@ -29,7 +29,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[userList.per_page]" showFirstLastButtons
+  <mat-paginator *ngIf="userList" [pageSizeOptions]="[userList.per_page]" showFirstLastButtons
   (page)="onPaginateChange($event)"
   [length]="userList.total">
   </mat-paginator>
