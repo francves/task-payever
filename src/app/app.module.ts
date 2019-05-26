@@ -7,6 +7,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'; 
 
+//Animations
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //Angular Material
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -29,7 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatPaginatorModule,
     MatCardModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpClient

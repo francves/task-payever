@@ -3,11 +3,27 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router';
 import { UserList } from '../../models/user-list'
+//Animations
+import { trigger, style, transition, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
+  animations: [
+    trigger('enterState',[
+      state('void', style({
+        transform: 'translateX(-100%)',
+        opacity: 0
+      })),
+      transition(':enter', [
+        animate(500, style({
+          transform: 'translateX(0)',
+          opacity: 1
+        }))
+      ])
+    ])
+  ]
 })
 export class UserListComponent implements OnInit {
 
